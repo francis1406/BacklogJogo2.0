@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Backlog</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+    <div class="netflixLogo">
+        <a id="logo" href="#home"><img
+                src="https://fontmeme.com/permalink/211016/29b05e8d85570b56e5d29ff167e16ddc.png"
+                alt="Logo Image"></a>
+    </div>
+    <nav class="main-nav">
+        <a href="/index">Home</a>
+        <a href="#concluidos">Concluidos</a>
+        <a href="#jogando">Jogando</a>
+        <a href="#fila">Fila</a>
+
+    </nav>
+    </nav>
+</header>
+<!-- END OF HEADER -->
+
+<div class="msg"
+     style="margin-left: 40%;margin-top: 10px;position: absolute;alignment: center;width: 100px;background-color: transparent;height: 100px;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                    <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<!-- partial:index.partial.html -->
+<div id="board">
+    <div class="column">
+        <h1 id="concluidos" class="secao">Concluidos</h1>
+        <ul class="card-list">
+
+            {% for jogo in concluido %}
+
+                <li class="card" draggable="true">
+                    <form id="myBox" method='POST' action="{{ url_for('telaEditar') }} ">
+                        <div class="box">
+                            <img class="img" src="{{ jogo.imgJogo }}" alt="">
+                            <label id="nomeJogo">{{ jogo.nomeJogo }}</label>
+                            <input type="hidden" name="nomeJogo" value="{{ jogo.nomeJogo }}">
+                            <br>
+                            <label id="notaJogo">Nota: {{ jogo.notaJogo }}</label>
+                            <div class="adc-pesquisa">
+                                <button id="btnEdit" type="submit" href="/editar">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="column">
+        <h1 id="jogando" class="secao">Jogando</h1>
+        <ul class="card-list">
+
+            {% for jogo in jogando %}
+                <li class="card" draggable="true">
+                    <form id="myBox" method='POST' action="{{ url_for('telaEditar') }} ">
+                        <div class="box">
+                            <img class="img" src="{{ jogo.imgJogo }}" alt="">
+                            <label id="nomeJogo">{{ jogo.nomeJogo }}</label>
+                            <input type="hidden" name="nomeJogo" value="{{ jogo.nomeJogo }}">
+                            <br>
+                            <label id="notaJogo">Nota: {{ jogo.notaJogo }}</label>
+                            <div class="adc-pesquisa">
+                                <button id="btnEdit" type="submit" href="/editar">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="column">
+        <h1 id="fila" class="secao">Na fila</h1>
+        <ul class="card-list">
+
+            {% for jogo in fila %}
+                <li class="card" draggable="true">
+                    <form id="myBox" method='POST' action="{{ url_for('telaEditar') }} ">
+                        <div class="box">
+                            <img class="img" src="{{ jogo.imgJogo }}" alt="">
+                            <label id="nomeJogo">{{ jogo.nomeJogo }}</label>
+                            <input id="InomeJogo" type="hidden" name="nomeJogo" value="{{ jogo.nomeJogo }}">
+                            <br>
+                            <label id="notaJogo">Nota: {{ jogo.notaJogo }}</label>
+                            <div class="adc-pesquisa">
+                                <button id="btnEdit" type="submit" href="/editar">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div id="modalOverlay"></div>
+</div>
+<!-- partial -->
+<script src="../static/js/script.js"></script>
+
+</body>
+</html>

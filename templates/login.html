@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="../static/css/loginCss.css" rel="stylesheet" id="lay-css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+</head>
+<body  style="background-color:black;">
+
+    <div class="login" style="background-color:rgba(9,9,9,0.84);">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                    <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form method='POST' action="{{ url_for('autenticar') }} ">
+        <h1 class="login__title">Sign In</h1>
+        <div class="login__group">
+            <input class="login__group__input" type="text" name="user" required="true"/>
+            <label class="login__group__label">Nome Usuário</label>
+        </div>
+        <div class="login__group">
+            <input class="login__group__input" type="password" name="password" required="true"/>
+            <label class="login__group__label">Senha</label>
+        </div>
+        <button class="login__sign-in" type="submit">Sign In</button>
+        <div class="login__secondary-cta"><a class="login__secondary-cta__text" href="#">Remember me</a><a
+                class="login__secondary-cta__text login__secondary-cta__text--need-help" href="#">Need help?</a></div>
+        </form>
+    </div>
+
+</body>
+</html>

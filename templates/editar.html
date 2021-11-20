@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Editar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- HEADER -->
+    <header>
+        <div class="netflixLogo">
+            <a id="logo" href="#home"><img
+                    src="https://fontmeme.com/permalink/211016/29b05e8d85570b56e5d29ff167e16ddc.png"
+                    alt="Logo Image"></a>
+        </div>
+        <nav class="main-nav">
+            <a href="/index">Home</a>
+        </nav>
+        </nav>
+    </header>
+    <!-- END OF HEADER -->
+
+    <!-- MAIN CONTAINER -->
+    <section class="main-container">
+        <div class="location" id="home">
+            <h1 id="home">EDITAR</h1>
+            <div id="divEdit">
+                <h2><label id="nomeJogo">{{ jName }}</label></h2>
+                <img id="imgEdit" src="{{ jImg }}" alt=""
+                     style="max-height: 410px; min-height: 410px;max-width: 610px; min-width: 610px;">
+                <div class="form-group" style="width: 200px">
+                    <form method="post" action="{{ url_for('editarJogo') }}">
+                        <input type="hidden" name="nomeJogo" value="{{ jName }}">
+                        <div class="adc-pesquisa">
+                            <select name="notaJogo" class="form-select" aria-label="Default select example"
+                                    style="width: 210px; background: #333;border-radius: 2px;margin-top: 10px;
+                        border: none;opacity: 1;color: #fff;line-height: 25px; width: 80px; height: 40px">
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+
+                            <br>
+                            <button id="btnEdit" type="submit" style="width: 80px;">Editar</button>
+                            <br>
+                            <button id="btnEdit" type="submit" style="width: 80px;"><a
+                                    href="{{ url_for('deletar', name=jName) }}">Deletar</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- END OF MAIN CONTAINER -->
+</div>
+</body>
+</html>
